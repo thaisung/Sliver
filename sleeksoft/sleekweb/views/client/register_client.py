@@ -58,8 +58,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_v1_5
+
 import base64
 
 from django.core.mail import send_mail
