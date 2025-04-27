@@ -1,0 +1,294 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="vi">
+{% load static %}
+
+<head>
+    {% tailwind_css %}
+    <!-- 1. Thẻ charset, viewport, title -->
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- 2. Thẻ SEO cơ bản -->
+    {% block seo_tag %}{% endblock %}
+    <meta name='revisit-after' content='1 days' />
+    <meta name="robots" content="noodp,index,follow" />
+
+    <!-- 3. Favicon -->
+    <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
+
+    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
+    <meta property="og:type" content="website">
+    {% block meta_tag %}{% endblock %}
+    <meta property="og:site_name" content="Hydrinity">
+
+    <!-- 5. Phần còn lại -->
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+
+    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
+    <link rel="stylesheet" href="/static/styles.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+    <script>
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        $(document).ready(function () {
+            function formatNumberWithDot(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            $('.format_number').each(function () {
+                var originalNumber = $(this).text().trim();
+                var formattedNumber = formatNumberWithDot(originalNumber);
+                $(this).text(formattedNumber);
+            });
+        });
+    </script>
+
+
+    <style>
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'UTM Bebas';
+            src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        body {
+            font-family: 'UTM Aptima', sans-serif !important;
+        }
+    </style>
+
+
+</head>
+
+<body class=" flex flex-col bg-stone-950 min-h-screen text-white">
+    <!-- Nút chọn ngôn ngữ -->
+    <!-- <div class="fixed bottom-4 left-4 z-50">
+        <button onclick="toggleDropdown()"
+            class="bg-stone-700 text-white px-4 py-2 rounded-md shadow-md hover:bg-stone-600 transition">
+            <svg class="fill-white stroke-white" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>language</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Outlined" transform="translate(-918.000000, -332.000000)">
+                        <g id="Action" transform="translate(100.000000, 100.000000)">
+                            <g id="Outlined-/-Action-/-language" transform="translate(816.000000, 230.000000)">
+                                <g>
+                                    <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M11.99,2 C6.47,2 2,6.48 2,12 C2,17.52 6.47,22 11.99,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 11.99,2 Z M18.92,8 L15.97,8 C15.65,6.75 15.19,5.55 14.59,4.44 C16.43,5.07 17.96,6.35 18.92,8 Z M12,4.04 C12.83,5.24 13.48,6.57 13.91,8 L10.09,8 C10.52,6.57 11.17,5.24 12,4.04 Z M4.26,14 C4.1,13.36 4,12.69 4,12 C4,11.31 4.1,10.64 4.26,10 L7.64,10 C7.56,10.66 7.5,11.32 7.5,12 C7.5,12.68 7.56,13.34 7.64,14 L4.26,14 Z M5.08,16 L8.03,16 C8.35,17.25 8.81,18.45 9.41,19.56 C7.57,18.93 6.04,17.66 5.08,16 Z M8.03,8 L5.08,8 C6.04,6.34 7.57,5.07 9.41,4.44 C8.81,5.55 8.35,6.75 8.03,8 Z M12,19.96 C11.17,18.76 10.52,17.43 10.09,16 L13.91,16 C13.48,17.43 12.83,18.76 12,19.96 Z M14.34,14 L9.66,14 C9.57,13.34 9.5,12.68 9.5,12 C9.5,11.32 9.57,10.65 9.66,10 L14.34,10 C14.43,10.65 14.5,11.32 14.5,12 C14.5,12.68 14.43,13.34 14.34,14 Z M14.59,19.56 C15.19,18.45 15.65,17.25 15.97,16 L18.92,16 C17.96,17.65 16.43,18.93 14.59,19.56 Z M16.36,14 C16.44,13.34 16.5,12.68 16.5,12 C16.5,11.32 16.44,10.66 16.36,10 L19.74,10 C19.9,10.64 20,11.31 20,12 C20,12.69 19.9,13.36 19.74,14 L16.36,14 Z" id="🔹-Icon-Color" fill="#ffffff"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </button>
+        <div id="langDropdown" class="hidden bg-stone-700 mt-2 cnbg-stone-700 rounded-md shadow-md overflow-hidden">
+            <div class="flex flex-col">
+                <a href="{% url 'set_language' lang_code='en' %}" class="p-2 hover:bg-stone-600 ">EN - English</a>
+                <a href="{% url 'set_language' lang_code='cn' %}" class="p-2 hover:bg-stone-600">CN - China</a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Google Translate element (ẩn) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- JavaScript xử lý dịch -->
+    <script type="text/javascript">
+        function toggleDropdown() {
+            const menu = document.getElementById('langDropdown');
+            menu.classList.toggle('hidden');
+        }
+
+        function translatePage(lang) {
+            const combo = document.querySelector('.goog-te-combo');
+            if (combo) {
+                combo.value = lang;
+                combo.dispatchEvent(new Event('change'));
+            }
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'vi', // hoặc 'zh-CN'
+                includedLanguages: 'vi,zh-CN',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <!-- Nạp script Google Translate -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <header class="bg-stone-900 flex justify-center items-center w-full">
+        <div class="w-full lg:w-[1200px] flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] items-center justify-between h-auto lg:h-[80px] py-[15px] lg:py-[0px]">
+            <a href="/" class="  whitespace-nowrap text-yellow-500 uppercase text-[25px] flex items-center justify-center font-extrabold h-full">
+                ONLYLOVE
+            </a>
+            <div class="flex items-center  ">
+                <div class="flex flex-col lg:flex-row items-center  lg:gap-3">
+                    <nav class="flex justify-center h-full">
+                        <a href="{% url 'filter_client' %}?lv=All&s={{s}}&f={{f}}&f1={{f1}}"
+                            class="{% if lv == 'All' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3">
+                            All
+                        </a>
+                        <a href="{% url 'filter_client' %}?lv=High-class&s={{s}}&f={{f}}&f1={{f1}}"
+                            class="{% if lv == 'High-class' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3">
+                            High-class
+                        </a>
+                        <a href="{% url 'filter_client' %}?lv=Medium&s={{s}}&f={{f}}&f1={{f1}}" 
+                        class="{% if lv == 'Medium' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3">
+                            Medium
+                        </a>
+                        <a href="{% url 'filter_client' %}?lv=Popular&s={{s}}&f={{f}}&f1={{f1}}" 
+                        class="{% if lv == 'Popular' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3">
+                            Popular
+                        </a>
+                    </nav>
+                    <!-- <select name="f" onchange="this.form.submit()" class="rounded-full border-[1px] border-stone-700 bg-transparent bg-stone-800">
+                        <option value="" selected class="bg-stone-950">-- Khu vực --</option>
+                        {% for i in list_Large_area %}
+                        <option value="{{i.id}}" {% if f == i.id %}selected{% endif %} class="bg-stone-950">{{i.Name}}</option>
+                        {% endfor %}
+                    </select> -->
+                    <!-- <select name="f1" onchange="this.form.submit()" class="rounded-full border-[1px] border-stone-700 bg-transparent bg-stone-800">
+                        <option value="" selected class="bg-stone-950">-- # --</option>
+                        {% for i in list_Small_area %}
+                        <option value="{{i.id}}" {% if f1 == i.id %}selected{% endif %} class="bg-stone-950">{{i.Name}}</option>
+                        {% endfor %}
+                    </select> -->
+                    <form method="get" action="{% url 'filter_client' %}?lv={{lv}}&s={{s}}&f={{f}}&f1={{f1}}" class="relative flex items-center h-full mt-[15px] lg:mt-[0px]">
+                        <input name="s" value="{{s}}" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]" placeholder="Tìm kiếm" />
+                        <button type="submit" class="absolute right-1">
+                            <svg class="fill-stone-400 w-[28px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                <g id="Layer_63" data-name="Layer 63">
+                                    <path
+                                        d="M53.08,51l-9.84-9.84c10.24-11.82,1.63-30.7-14.15-30.64a18.63,18.63,0,0,0-18.61,18.6c-.06,15.79,18.82,24.4,30.64,14.16L51,53.08A1.5,1.5,0,0,0,53.08,51ZM13.48,29.08a15.62,15.62,0,0,1,15.61-15.6c20.69.86,20.69,30.35,0,31.21A15.62,15.62,0,0,1,13.48,29.08Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 ml-2 uppercase text-yellow-500 mt-[10px] lg:mt-[0px]">
+                <div class="w-[2px] h-[20px] bg-yellow-600"></div>
+                <a href="{% url 'login_client' %}" class=" whitespace-nowrap font-bold text-[13px]">Log in</a>
+                <div class="w-[2px] h-[20px] bg-yellow-600"></div>
+                <a href="{% url 'register_client' %}" class=" whitespace-nowrap font-bold text-[13px]">Register</a>
+                <div class="w-[2px] h-[20px] bg-yellow-600"></div>
+                <a href="{% url 'contact_client' %}" class=" whitespace-nowrap font-bold text-[13px]">Contact</a>
+                <div class="w-[2px] h-[20px] bg-yellow-600"></div>
+            </div>
+        </div>
+    </header>
+    <div class="flex w-full grow">
+        <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+        <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+            <div class="w-full h-auto">
+                <img src="http://127.0.0.1:8000/upload/PRODUCT/1_FYxuwHq.jpg" class="w-full h-auto object-cover" >
+            </div>
+        </div>
+    </div>
+    <footer class=" flex justify-center items-center bg-stone-900">
+        <div class="w-full lg:w-[1200px] flex flex-col gap-[15px] justify-between border-t-[1px] border-stone-800 bg-stone-900 p-3">
+            <div class="flex flex-col gap-[10px] text-justify">
+                <p class="font-bold text-[30px]">High Class Dubai escort listing in UAE</p>
+                <span>
+                    Do you want to have fun that you never experienced before? Try out the unique selection of the Dubai escorts from all over the world. You can find local girls that are unique as well as with other ethicality. All of them care about their clients and satisfaction no matter of your demands. You can be sure that they will make the best amusement for everyone’s needs so that you would feel pleased and entertained for an enjoyable time. You will feel something new as all of their services are with 100% engagement. You can also ask for some special body to body massage and other naughty things. Their fingers and not only that can move the way you never experienced before. Even if you have just one hour free, you should use it wisely and try out new fun options like getting the best blowjob, body rub, Thai or any other kind of massage and other things. Almost everything can be agreed on, so you just have to find the right words how to ask for it. You can do it by texting or calling.
+                </span>
+            </div>
+            <div class="flex flex-col gap-[10px] text-justify">
+                <p class="font-bold text-[30px]">Verified and fresh escorts added daily!</p>
+                <span>
+                    The professional management team will make it all happen in the most discreet form. You will have great astonishing times for your deepest desires with the right girl as long as you find UAE escort profile that calls you the most. All the information if updated and real. You can be sure that the girl will look just like in the picture and perhaps even better. In life, you will also be capable of experiencing the best there is from being with an Arabic escorts who knows how to give the best exciting enjoyment to anyone who wants it. She also has nothing against enjoying time with other people or trio. These individual massage girls have so many capabilities that they can easily give it to more people. Whichever services you choose can be performed in such a manner that you have never experienced before. You won’t leave unsatisfied as you will be thoroughly astonished by these VIP Dubai escorts and their capabilities. As they are professional, they will know how to keep you engaged and interested for a long time. Just allow them to make the best enjoyment for your needs and feel excited to be with them. You can be sure that you will want to return and try the lady or ladies at least once more. They can be anything in one person – a travel buddy, a sex partner, a professional entertainer to show o to other people or anything else. These astonishing girls will never stop surprising you in the manner that you will never feel tired of being with them. Just allow Ukrainian escorts to be close to you and fulfill your deepest desires.
+                </span>
+            </div>
+            <div class="flex flex-col gap-[10px] text-justify">
+                <p class="font-bold text-[30px]">Find call girls and massage ladies easy</p>
+                <span>
+                    She won’t stop half away. You will be able to finish the way you want in different places. You will be able to take her out to some bars or any other place you might want not to feel lonely. You can even make it feel like you have been going on a date with Emirates escort lady as she will be your best partner. This selection will make you highly pleased to enjoy time with a sexy lady who is also at the same time a great talker. You will be able to learn a lot of things from her and better understand women. If you want the whole process to be slow, there is no problem as Dubai call girls can also show a spark of romance. She can even help you to set the mood and prepare. For the ones who are shy, everything can happen step by step with her guiding you along the way. But as the anticipation will raise, it will be hard for you to step back from a beautiful Arabian girl. They are professionals in their services, communication and all the rest things that are needed to have an excellent time. Feel free to book Moroccan escorts in Dubai and make the most exciting times for their needs without anything to regret enjoying with them.
+                </span>
+                <span>
+                    Their sexy bodies can appeal even to the most demanding client. You can be sure that touching any Dubai escort will feel real and necessary. She can also show you the places you should go or teach you new techniques to be more charming. It is all about her how you will use Dubai escorts for your personal fun and other needs to feel and be better. You will feel highly evaluated and satisfied whenever you will want to enjoy fabulous females when staying in the UAE. Even if you don’t have a place where you could safely bring them, it is not a problem. People can solve everything in such manner that both sides will be satisfied. You will find some astonishing solutions for your deepest needs so that you will always feel excited to be entertained and try out the offered services. If you don’t know what you should do or shouldn’t do, you can only ask girls directly. They will always be willing you to help in the best way possible. You can be sure that any Romanian escort girls in Dubai will be your sex teacher and an obedient student at the same time. The above mentioned is what will be possible with great exciting options for everyone’s needs. Girls are much fun, and unique ones are even more fun. They will make all the most interesting things that your body and mind secretly wish. Even if you select the same lady, she will always keep surprising you and give herself entirely. All that is possible in just one hour, but if you book for an extended period, you can also get various discounts. Isn’t it encouraging enough? Find the right profile and contact already today. This choice will make the best exciting thrill that you will remember for as long as you want. Your experiences you will also be able to use in the future to feel more dominant and confident.
+                </span>
+            </div>
+            <div class="flex flex-col items-center gap-[10px] text-justify">
+                <span class="font-bold text-[20px] text-yellow-500">
+                    +18 only or leave website
+                </span>
+            </div>
+            <!-- <div class="flex flex-col">
+                <span class="font-bold">Danh mục phân khúc :</span>
+                <div class="flex flex-col text-stone-400">
+                    <a href="#" class="cursor-pointer">Cao cấp</a>
+                    <a href="#" class="cursor-pointer">Bình dân</a>
+                    <a href="#" class="cursor-pointer">Thấp</a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-bold">Danh mục Địa điểm :</span>
+                <div class="flex flex-col text-stone-400">
+                    {% for i in list_Large_area %}
+                    <a href="#" class="cursor-pointer">{{i.Name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-bold">Thống kê :</span>
+                <div class="flex flex-col text-stone-400">
+                    <a>Tổng bài viết : 1000 k</a>
+                    <a>Tổng lượt xem : 1000 v</a>
+                </div>
+            </div> -->
+        </div>
+    </footer>
+</body>
+
+</html>

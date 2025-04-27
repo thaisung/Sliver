@@ -1,0 +1,24 @@
+{% extends './base.html' %}
+{% block title %}Trang chủ{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="Trang chủ">
+    <meta name="keywords" content="Trang chủ" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="Trang chủ">
+    <meta property="og:description" content="Trang chủ">
+{% endblock %}
+{% block content %}
+<main class=" flex flex-col justify-center items-center  grow py-[15px]">
+    <div class="w-[1200px] flex flex-col grow gap-3 bg-stone-900 border-[1px] border-stone-800 rounded-md p-3">
+        <h1>Contact us</h1>
+        <p>Customer Support Tickets</p>
+        <div class="flex fex-col gap-1">
+            <p>-Profile Advertising (100 EUR/month)</p>
+            <p>-Profile Updating</p>
+            <p>-Profile And Image Removal (24-74 hours)</p>
+        </div>
+        <p>Email: <span class="text-yellow-500">info@vip-dubai-bunnies.com</span></p>
+    </div>
+</main>
+{% endblock %}
