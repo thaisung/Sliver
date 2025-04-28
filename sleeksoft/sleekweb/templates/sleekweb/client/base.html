@@ -162,11 +162,11 @@
                             All
                         </a>
                         <a href="{% url 'filter_client' %}?lv=High-class&s={{s}}&r={{r}}&n={{n}}"
-                            class="{% if lv == 'High-class' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3">
+                            class="{% if lv == 'High-class' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3 whitespace-nowrap">
                             High-class
                         </a>
                         <a href="{% url 'filter_client' %}?lv=Medium&s={{s}}&r={{r}}&n={{n}}" 
-                        class="{% if lv == 'Medium' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3">
+                        class="{% if lv == 'Medium' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3 whitespace-nowrap">
                             Medium
                         </a>
                         <a href="{% url 'filter_client' %}?lv=Popular&s={{s}}&r={{r}}&n={{n}}" 
@@ -174,8 +174,8 @@
                             Popular
                         </a>
                     </nav>
-                    <div class="relative flex items-center h-full mt-[15px] lg:mt-[0px]">
-                        <input name="s" value="{{s}}" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]" placeholder="Tìm kiếm" />
+                    <div class="relative flex items-center h-full mt-[15px] lg:mt-[0px] w-full">
+                        <input name="s" value="{{s}}" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px] w-full" placeholder="Tìm kiếm" />
                         <button type="submit" class="absolute right-1">
                             <svg class="fill-stone-400 w-[28px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                                 <g id="Layer_63" data-name="Layer 63">
@@ -186,16 +186,16 @@
                             </svg>
                         </button>
                     </div>
-                    <div>
-                        <select name="r" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]">
+                    <div class="mt-[15px] lg:mt-[0px] w-full">
+                        <select name="r" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px] w-full">
                             <option value="" class="bg-stone-700 text-white">-- All --</option>
                             {% for i in list_Region %}
                             <option value="{{i.id}}" class="bg-stone-700 text-white" {% if r == i.id %}selected{% endif %}>{{i.Name}}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div>
-                        <select name="n" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]">
+                    <div class="mt-[15px] lg:mt-[0px] w-full">
+                        <select name="n" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px] w-full">
                             <option value="" class="bg-stone-700 text-white">-- All --</option>
                             {% for i in list_Nation %}
                             <option value="{{i.id}}" class="bg-stone-700 text-white" {% if n == i.id %}selected{% endif %}>{{i.Name}}</option>
