@@ -73,8 +73,8 @@ def contact_client(request):
         context = {}
         lc = request.COOKIES.get('language') or 'en'
         context['domain'] = settings.DOMAIN
-        # context['list_Large_area'] = Large_area.objects.all()
-        # context['list_Small_area'] = Small_area.objects.all()
+        context['list_Region'] = Region.objects.all()
+        context['list_Nation'] = Nation.objects.all()
         # context['obj_Product_en'] = XY_en.objects.get(uuid=pk)
         # context['obj_Product_cn'] = XY_cn.objects.get(uuid=pk)
         # context['list_Large_area'] = Large_area.objects.all()

@@ -48,6 +48,7 @@ from .views.admin.login_admin import *
 from .views.admin.product_admin import *
 from .views.admin.region_admin import *
 from .views.admin.user_admin import *
+from .views.admin.setting_admin import *
 
 urlpatterns = [
     # path('account/login', login_client,name='login_client'),
@@ -82,4 +83,6 @@ urlpatterns = [
     path('admin/user/change-password/', user_change_password_admin,name='user_change_password_admin'),
     path('admin/user/change-time/', user_change_time_user_admin,name='user_change_time_user_admin'),
     path('admin/user/reset-time/', user_reset_time_user_admin,name='user_reset_time_user_admin'),
+
+    path('admin/setting/', setting_admin,name='setting_admin'),
 ] 

@@ -76,8 +76,8 @@ def detail_client(request,pk):
         context['list_Region'] = Region.objects.all()
         context['list_Nation'] = Nation.objects.all()
         context['obj_Product'] = XY.objects.get(uuid=pk)
-        context['list_Region'] = Region.objects.all()
-        context['list_Nation'] = Nation.objects.filter(Belong_Region=context['obj_Product'].Belong_Region)
+        # context['list_Region'] = Region.objects.all()
+        # context['list_Nation'] = Nation.objects.filter(Belong_Region=context['obj_Product'].Belong_Region)
 
         # context['list_Product'] = Product.objects.all()
         print('context:',context)

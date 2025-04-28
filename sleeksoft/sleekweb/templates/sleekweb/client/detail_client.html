@@ -11,22 +11,17 @@
 {% block content %}
 <main class=" flex flex-col justify-center items-center  grow py-[15px]">
     <div class="w-full lg:w-[1200px] flex flex-col grow gap-3">
-        <!-- <a class="flex items-center gap-1">
-            <span
-                class="flex items-center justify-center px-2 py-1 font-semibold text-[14px] rounded-md bg-red-500 ">500k</span>
-            <span class="uppercase font-bold text-[18px]">dan tính khó hiểu</span>
-        </a> -->
         <div class="flex flex-col lg:flex-row gap-[15px] w-full bg-stone-900 border-[1px] border-stone-800 rounded-md p-3">
             <div class="flex flex-col w-full gap-[15px]">
                 <div class="flex flex-col w-full gap-[15px]">
                     <div class="flex w-full justify-center items-center">
-                        <img  class="w-full h-auto cursor-pointer" src="{{obj_Product.list_photo.all.first.Avatar.url}}" />
+                        <img alt="img" class="w-full h-auto cursor-pointer" src="{{obj_Product.list_photo.all.first.Avatar.url}}" />
                     </div>
                     <span class="font-bold">Photo :</span>
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-[15px]">
                         {% for i in obj_Product.list_photo.all %}
                         <a data-fancybox="gallery-image" href="{{ i.Avatar.url }}" class="w-full">
-                            <img src="{{ i.Avatar.url }}"  class="shadow-md  transition w-full h-auto brightness-110" />
+                            <img alt="img" src="{{ i.Avatar.url }}"  class="shadow-md  transition w-full h-auto brightness-110" />
                         </a>
                         {% endfor %}
                     </div>
@@ -107,22 +102,22 @@
                         <span class="text-yellow-500"><span class="text-white">Name/stage name: </span>	{{obj_Product.Name}}</span>
                         <span class="text-yellow-500"><span class="text-white">Product type (segment):</span>	{{obj_Product.Segment}}</span>
                         <span class="text-yellow-500"><span class="text-white">Area:</span>	{{obj_Product.Belong_Region.Name}} | {{obj_Product.Belong_Nation.Name}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Call Now:</span>	{{obj_Product.Phone}}</span>
-                        <!-- <span class="text-yellow-500"><span class="text-white">Pass khi liên hệ:</span>	Lấy số thanhlau</span> -->
-                        <!-- <span class="text-yellow-500"><span class="text-white">Giá/ 1 lần xuất tinh:</span>	300k</span> -->
-                        <span class="text-yellow-500"><span class="text-white">Thời gian làm việc:</span>	{{obj_Product.Working_time}}</span>
+                        <span class="text-yellow-500"><span class="text-white">Call Now:</span>
+                            <a href="https://wa.me/{{obj_Product.Phone}}" target="_blank" class="hover:underline">
+                                {{obj_Product.Phone}}
+                            </a>
+                        </span>
                         <span class="text-yellow-500"><span class="text-white">Overnight:</span>	{{obj_Product.Overnight}}</span>
                         <span class="text-yellow-500"><span class="text-white">Year of birth:</span>	{{obj_Product.Year_of_birth}}</span>
                         <span class="text-yellow-500"><span class="text-white">Height (cm):</span>	{{obj_Product.Height}}</span>
                         <span class="text-yellow-500"><span class="text-white">Weight (kg):</span>	{{obj_Product.Weight}}</span>
                         <span class="text-yellow-500"><span class="text-white">Three-round measurements:</span>	{{obj_Product.Rounds}}</span>
-                        <!-- <span class="text-yellow-500"><span class="text-white">Thông tin khác:</span>	Hàng ngon giá rẻ</span> -->
                         <span class="text-yellow-500"><span class="text-white">Service:</span>	{{obj_Product.Service}}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <a id="phone-field" href="tel://0566371378" class="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-full bg-stone-50 text-stone-950 font-bold text-[20px]">
+        <a id="phone-field" href="https://wa.me/{{obj_Product.Phone}}" target="_blank" class="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-full bg-stone-50 text-stone-950 font-bold text-[20px]">
             <svg class="w-[35px]" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                 <g>
                     <g>

@@ -79,7 +79,6 @@ class XY(models.Model):
     uuid = models.CharField('uuid', max_length=100,blank=True, null=True)
     Name = models.CharField('Tên NV', max_length=100,blank=True, null=True)
     Phone = models.CharField('Số đt', max_length=100,blank=True, null=True)
-    Working_time = models.CharField('Thời gian làm việc', max_length=100,blank=True, null=True)
     Overnight = models.CharField('Qua đêm', max_length=10,blank=True, null=True,default='0')
     Year_of_birth = models.CharField('Năm sinh', max_length=50,blank=True, null=True)
     Height = models.CharField('Chiều cao', max_length=50,blank=True, null=True)

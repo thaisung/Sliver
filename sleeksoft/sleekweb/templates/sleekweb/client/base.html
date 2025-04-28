@@ -155,38 +155,26 @@
                 ONLYLOVE
             </a>
             <div class="flex items-center  ">
-                <div class="flex flex-col lg:flex-row items-center  lg:gap-3">
+                <form action="{% url 'filter_client' %}" class="flex flex-col lg:flex-row items-center  lg:gap-3">
                     <nav class="flex justify-center h-full">
-                        <a href="{% url 'filter_client' %}?lv=All&s={{s}}&f={{f}}&f1={{f1}}"
+                        <a href="{% url 'filter_client' %}?lv=All&s={{s}}&r={{r}}&n={{n}}"
                             class="{% if lv == 'All' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3">
                             All
                         </a>
-                        <a href="{% url 'filter_client' %}?lv=High-class&s={{s}}&f={{f}}&f1={{f1}}"
+                        <a href="{% url 'filter_client' %}?lv=High-class&s={{s}}&r={{r}}&n={{n}}"
                             class="{% if lv == 'High-class' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center h-full p-3">
                             High-class
                         </a>
-                        <a href="{% url 'filter_client' %}?lv=Medium&s={{s}}&f={{f}}&f1={{f1}}" 
+                        <a href="{% url 'filter_client' %}?lv=Medium&s={{s}}&r={{r}}&n={{n}}" 
                         class="{% if lv == 'Medium' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3">
                             Medium
                         </a>
-                        <a href="{% url 'filter_client' %}?lv=Popular&s={{s}}&f={{f}}&f1={{f1}}" 
+                        <a href="{% url 'filter_client' %}?lv=Popular&s={{s}}&r={{r}}&n={{n}}" 
                         class="{% if lv == 'Popular' %}bg-stone-950 rounded-md text-yellow-500{% endif %} cursor-pointer text-[18px] font-semibold flex items-center justify-center  h-full p-3">
                             Popular
                         </a>
                     </nav>
-                    <!-- <select name="f" onchange="this.form.submit()" class="rounded-full border-[1px] border-stone-700 bg-transparent bg-stone-800">
-                        <option value="" selected class="bg-stone-950">-- Khu vực --</option>
-                        {% for i in list_Large_area %}
-                        <option value="{{i.id}}" {% if f == i.id %}selected{% endif %} class="bg-stone-950">{{i.Name}}</option>
-                        {% endfor %}
-                    </select> -->
-                    <!-- <select name="f1" onchange="this.form.submit()" class="rounded-full border-[1px] border-stone-700 bg-transparent bg-stone-800">
-                        <option value="" selected class="bg-stone-950">-- # --</option>
-                        {% for i in list_Small_area %}
-                        <option value="{{i.id}}" {% if f1 == i.id %}selected{% endif %} class="bg-stone-950">{{i.Name}}</option>
-                        {% endfor %}
-                    </select> -->
-                    <form method="get" action="{% url 'filter_client' %}?lv={{lv}}&s={{s}}&f={{f}}&f1={{f1}}" class="relative flex items-center h-full mt-[15px] lg:mt-[0px]">
+                    <div class="relative flex items-center h-full mt-[15px] lg:mt-[0px]">
                         <input name="s" value="{{s}}" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]" placeholder="Tìm kiếm" />
                         <button type="submit" class="absolute right-1">
                             <svg class="fill-stone-400 w-[28px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -197,8 +185,24 @@
                                 </g>
                             </svg>
                         </button>
-                    </form>
-                </div>
+                    </div>
+                    <div>
+                        <select name="r" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]">
+                            <option value="" class="bg-stone-700 text-white">-- All --</option>
+                            {% for i in list_Region %}
+                            <option value="{{i.id}}" class="bg-stone-700 text-white" {% if r == i.id %}selected{% endif %}>{{i.Name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <select name="n" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px]">
+                            <option value="" class="bg-stone-700 text-white">-- All --</option>
+                            {% for i in list_Nation %}
+                            <option value="{{i.id}}" class="bg-stone-700 text-white" {% if n == i.id %}selected{% endif %}>{{i.Name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
             </div>
             <div class="flex items-center gap-2 ml-2 uppercase text-yellow-500 mt-[10px] lg:mt-[0px]">
                 <div class="w-[2px] h-[20px] bg-yellow-600"></div>

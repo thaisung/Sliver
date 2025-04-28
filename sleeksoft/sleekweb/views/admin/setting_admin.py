@@ -61,49 +61,60 @@ from django.views.decorators.csrf import csrf_exempt
 
 import base64
 
-from django.core.mail import send_mail
-from django.forms.models import model_to_dict
-from django.core.mail import send_mail,EmailMessage
-
-
-
-    
-def filter_client(request):
+def setting_admin(request):
     if request.method == 'GET':
         context = {}
         lc = request.COOKIES.get('language') or 'en'
         context['domain'] = settings.DOMAIN
-        # context['list_Product'] = Product.objects.all()
         context['list_Region'] = Region.objects.all()
-        context['list_Nation'] = Nation.objects.all()
-        context['list_Product'] = XY.objects.all().order_by('Order')
-        lv = request.GET.get('lv')
         s = request.GET.get('s')
-        r = request.GET.get('r')
-        n = request.GET.get('n')
-        if lv:
-            if lv == 'All':
-                context['lv'] = 'All'
-            else:
-                context['list_Product'] = context['list_Product'].filter(Segment=lv).order_by('-id')
-                context['lv'] = lv
         if s:
-            context['list_Product'] = context['list_Product'].filter(Q(Name__icontains=s)).order_by('-id')
+            context['list_Region'] = context['list_Region'].filter(Q(Name__icontains=s)).order_by('-id')
             context['s'] = s
-        if r:
-            context['list_Product'] = context['list_Product'].filter(Belong_Region_id=r).order_by('-id')
-            context['r'] = int(r)
-            try:
-                context['obj_r'] = Region.objects.get(pk=r)
-            except:
-                print('not')
-        if n:
-            context['list_Product'] = context['list_Product'].filter(Belong_Nation_id=n).order_by('-id')
-            context['n'] = int(n)
-            try:
-                context['obj_n'] = Nation.objects.get(pk=n)
-            except:
-                print('not')
         print('context:',context)
-        return render(request, 'sleekweb/client/filter_client.html', context, status=200)
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/setting_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
+    elif request.method == 'POST':
+        fields = {}
+        fields['Name'] = request.POST.get('Name')
+        obj = Region.objects.create(**fields)
+        return redirect('region_admin')
     
+# def region_remove_admin(request):
+#     if request.method == 'POST':
+#         fields = {}
+#         pk = request.POST.get('pk')
+#         try:
+#             obj_pk = Region.objects.get(pk=pk)
+#             obj_pk.delete()
+#         except:
+#             return redirect('region_admin')
+#         return redirect('region_admin')
+    
+# def nation_add_admin(request):
+#     if request.method == 'POST':
+#         fields = {}
+#         pk = request.POST.get('pk')
+#         try:
+#             obj_pk = Region.objects.get(pk=pk)
+#         except:
+#             return redirect('region_admin')
+#         fields['Name'] = request.POST.get('Name')
+#         fields['Belong_Region'] = obj_pk
+#         obj = Nation.objects.create(**fields)
+#         return redirect('region_admin')
+    
+# def nation_remove_admin(request):
+#     if request.method == 'POST':
+#         fields = {}
+#         pk = request.POST.get('pk')
+#         try:
+#             obj_pk = Nation.objects.get(pk=pk)
+#             obj_pk.delete()
+#         except:
+#             return redirect('region_admin')
+#         return redirect('region_admin')
+        
+

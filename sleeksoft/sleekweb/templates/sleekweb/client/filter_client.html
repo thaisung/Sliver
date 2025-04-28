@@ -14,13 +14,13 @@
         <div class="flex flex-col gap-1 ">
             <span class="uppercase font-bold">Thông tin tìm kiếm:</span>
             <div class="flex gap-2 text-stone-400">
-                <span>Từ khoá : {{s}}</span>
+                <span>Keywords : {{s}}</span>
                 |
-                <span>Phân khúc : {{lv}}</span>
+                <span>Segment : {{lv}}</span>
                 |
-                <span>Tỉnh : Bắc Kinh</span>
+                <span>Region : {{obj_r.Name}}</span>
                 |
-                <span>Thành phố : ABC</span>
+                <span>Nation : {{obj_n.Name}}</span>
             </div>
         </div>
         <div class=" w-full  flex flex-col divide-y-[1px] divide-stone-700 bg-stone-900 grow border-[1px] border-stone-800">
@@ -28,7 +28,7 @@
                 {% for i in list_Product %}
                 <a href="{% url 'detail_client' pk=i.uuid %}" class="flex flex-col justify-between gap-2">
                     <div class="w-full h-auto rounded border-[2px] border-yellow-100 overflow-hidden">
-                        <img src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto" >
+                        <img alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto" >
                     </div>
                     <div class="flex flex-col gap-1 w-full h-auto text-yellow-600 text-center">
                         <p class="font-bold text-[18px]">{{i.Name}}</p>

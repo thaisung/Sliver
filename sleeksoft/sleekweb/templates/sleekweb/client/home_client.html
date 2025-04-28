@@ -16,7 +16,7 @@
                 {% for i in list_Product %}
                 <a href="{% url 'detail_client' pk=i.uuid %}" class="flex flex-col justify-between gap-2 w-full ">
                     <div class="w-full h-auto rounded border-[2px] border-yellow-100 overflow-hidden">
-                        <img src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto " >
+                        <img  alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto " >
                     </div>
                     <div class="flex flex-col gap-1 w-full h-auto text-yellow-600 text-center">
                         <p class="font-bold text-[18px]">{{i.Name}}</p>
