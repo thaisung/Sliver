@@ -136,7 +136,6 @@ def product_add_admin(request):
             fields = {}
             fields['Name'] = request.POST.get('Name')
             fields['Phone'] = request.POST.get('Phone')
-            fields['Working_time'] = request.POST.get('Working_time')
             fields['Segment'] = request.POST.get('Segment')
             fields['Overnight'] = request.POST.get('Overnight')
             fields['Year_of_birth'] = request.POST.get('Year_of_birth')
@@ -211,7 +210,6 @@ def product_edit_admin(request,pk):
         fields = {}
         fields['Name'] = request.POST.get('Name')
         fields['Phone'] = request.POST.get('Phone')
-        fields['Working_time'] = request.POST.get('Working_time')
         fields['Segment'] = request.POST.get('Segment')
         fields['Overnight'] = request.POST.get('Overnight')
         fields['Year_of_birth'] = request.POST.get('Year_of_birth')
