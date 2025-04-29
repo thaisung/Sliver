@@ -217,27 +217,19 @@
     </header>
     <div class="flex w-full grow">
         <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
+            {% for i in list_Product|slice:":3" %}
+            <a href="{% url 'detail_client' pk=i.uuid %}" class="w-full h-auto">
+                <img alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto object-cover" >
+            </a>
+            {% endfor %}
         </div>
         {% block content %}{% endblock %}
         <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
-            <div class="w-full h-auto">
-                <img src="https://i.pinimg.com/736x/0b/db/c7/0bdbc7e1f21b705d25b7f81873810086.jpg" class="w-full h-auto object-cover" >
-            </div>
+            {% for i in list_Product|slice:"-3:" %}
+            <a href="{% url 'detail_client' pk=i.uuid %}" class="w-full h-auto">
+                <img alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto object-cover" >
+            </a>
+            {% endfor %}
         </div>
     </div>
     <footer class=" flex justify-center items-center bg-stone-900">

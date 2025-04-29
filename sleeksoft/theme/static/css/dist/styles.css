@@ -992,10 +992,6 @@ select {
   width: 100px;
 }
 
-.w-\[1200px\] {
-  width: 1200px;
-}
-
 .w-\[137px\] {
   width: 137px;
 }
@@ -1050,10 +1046,6 @@ select {
 
 .w-full {
   width: 100%;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .max-w-\[400px\] {
@@ -1410,10 +1402,6 @@ select {
 
 .p-\[20px\] {
   padding: 20px;
-}
-
-.p-\[30px\] {
-  padding: 30px;
 }
 
 .p-\[40px\] {

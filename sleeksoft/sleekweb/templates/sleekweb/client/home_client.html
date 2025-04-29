@@ -12,7 +12,7 @@
 <main class=" flex flex-col justify-center items-center  grow py-[15px]">
     <div class="w-full lg:w-[1200px] flex flex-col grow gap-3">
         <div class="flex flex-col w-full  border-[1px] border-stone-800 grow bg-stone-900">
-            <div class=" w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-[15px] p-[15px]  bg-stone-900 ">
+            <div class=" w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[15px] p-[15px]  bg-stone-900 ">
                 {% for i in list_Product %}
                 <a href="{% url 'detail_client' pk=i.uuid %}" class="flex flex-col justify-between gap-2 w-full ">
                     <div class="w-full h-auto rounded border-[2px] border-yellow-100 overflow-hidden">
