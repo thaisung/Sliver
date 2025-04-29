@@ -151,9 +151,42 @@
 
     <header class="bg-stone-900 flex justify-center items-center w-full">
         <div class="w-full lg:w-[1200px] flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] items-center justify-between h-auto lg:h-[80px] py-[15px] lg:py-[0px]">
-            <a href="/" class="  whitespace-nowrap text-yellow-500 uppercase text-[25px] flex items-center justify-center font-extrabold h-full">
-                ONLYLOVE
+            <a href="/" class="neon-text relative flex flex-col whitespace-nowrap uppercase text-[25px] items-center justify-center font-extrabold h-full">
+                <span>
+                    callgirl
+                </span>
             </a>
+            <style>
+                .neon-text span:first-child {
+                  color: #fdf6d8; /* màu nền chính */
+                  text-shadow:
+                    0 0 5px #ffcc00,
+                    0 0 10px #ffcc00,
+                    0 0 20px #ffcc00,
+                    0 0 40px #ffaa00,
+                    0 0 60px #ffaa00;
+                  animation: pulse 2s infinite;
+                }
+                
+                @keyframes pulse {
+                  0%, 100% {
+                    text-shadow:
+                      0 0 5px #ffcc00,
+                      0 0 10px #ffcc00,
+                      0 0 20px #ffcc00,
+                      0 0 40px #ffaa00,
+                      0 0 60px #ffaa00;
+                  }
+                  50% {
+                    text-shadow:
+                      0 0 10px #ffcc00,
+                      0 0 20px #ffcc00,
+                      0 0 30px #ffaa00,
+                      0 0 50px #ffaa00,
+                      0 0 70px #ffaa00;
+                  }
+                }
+                </style>
             <div class="flex items-center  ">
                 <form action="{% url 'filter_client' %}" class="flex flex-col lg:flex-row items-center  lg:gap-3">
                     <nav class="flex justify-center h-full">
