@@ -15,8 +15,19 @@
             <div class=" w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[15px] p-[15px]  bg-stone-900 ">
                 {% for i in list_Product %}
                 <a href="{% url 'detail_client' pk=i.uuid %}" class="flex flex-col justify-between gap-2 w-full ">
-                    <div class="w-full h-[450px]  overflow-hidden">
-                        <img  alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-full object-fill " >
+                    <div class="w-full h-[450px] overflow-hidden swiper-container-{{ forloop.counter }}"
+                        onmouseenter="startSwiper('{{ forloop.counter }}')" 
+                        onmouseleave="stopSwiper('{{ forloop.counter }}')">
+                        
+                        <div class="swiper mySwiper-{{ forloop.counter }} w-full h-full">
+                            <div class="swiper-wrapper w-full h-full">
+                                {% for photo in i.list_photo.all %}
+                                <div class="swiper-slide w-full h-full">
+                                    <img src="{{ photo.Avatar.url }}" alt="img" class="w-full h-full object-cover">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                     <div class="flex flex-col gap-1 w-full h-auto text-yellow-600">
                         <p class="font-bold text-[18px]">{{i.Name}}</p>
@@ -146,7 +157,42 @@
       background-color: rgb(12 10 9 / var(--tw-bg-opacity, 1));
       font-weight: 600;
     }
-  </style>
+</style>
+<script>
+    const swipers = {}; // chứa tất cả swiper
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const total = {{ list_Product|length }};
+      for (let i = 1; i <= total; i++) {
+        swipers[i] = new Swiper(".mySwiper-" + i, {
+          loop: true,
+          autoplay: {
+            delay: 1000,
+            disableOnInteraction: false,
+          },
+          speed: 600,
+          effect: "fade",
+          fadeEffect: { crossFade: true },
+        });
+  
+        swipers[i].autoplay.stop(); // ban đầu dừng
+      }
+    });
+  
+    function startSwiper(id) {
+      if (swipers[id]) {
+        swipers[id].autoplay.start();
+      }
+    }
+  
+    function stopSwiper(id) {
+      if (swipers[id]) {
+        swipers[id].autoplay.stop();
+        swipers[id].slideToLoop(0); // về ảnh đầu tiên
+      }
+    }
+  </script>
+  
 <script>
     // selecting required element
     const element = document.querySelector(".pagination ul");
