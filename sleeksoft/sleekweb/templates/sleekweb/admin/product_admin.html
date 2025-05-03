@@ -95,8 +95,8 @@
     <div class=" w-full rounded-md grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[15px] divide-y-[1px] divide-stone-700  grow p-[15px] ">
         {% for i in list_Product %}
         <div onclick="window.location.href='{% url 'product_edit_admin' pk=i.uuid %}'"  class=" relative cursor-pointer flex flex-col justify-between gap-2">
-            <div class="w-full h-auto rounded border-[2px] border-[#0e203c] overflow-hidden">
-                <img src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto" >
+            <div class="w-full h-[300px] rounded border-[2px] border-[#0e203c] overflow-hidden">
+                <img src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto object-fill" >
             </div>
             <div class="flex flex-col gap-1 w-full h-auto text-[#0e203c] text-center">
                 <p class="font-bold text-[18px]">{{i.Name}}</p>

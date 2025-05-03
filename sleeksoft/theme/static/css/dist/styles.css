@@ -1008,6 +1008,10 @@ select {
   height: 80px;
 }
 
+.h-\[200px\] {
+  height: 200px;
+}
+
 .max-h-\[40px\] {
   max-height: 40px;
 }
