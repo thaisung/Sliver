@@ -65,6 +65,7 @@ def region_admin(request):
     if request.method == 'GET':
         context = {}
         lc = request.COOKIES.get('language') or 'en'
+        Nation.objects.all().delete()
         context['domain'] = settings.DOMAIN
         context['list_Region'] = Region.objects.all()
         s = request.GET.get('s')

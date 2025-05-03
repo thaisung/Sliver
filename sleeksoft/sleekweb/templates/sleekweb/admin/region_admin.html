@@ -64,8 +64,9 @@
                     <svg class="w-[25px]" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Right, Next, Arrow</title><path d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10,10,0,0,1,12,22Z"></path><polygon points="8.48 7.08 13.4 12 8.48 16.92 9.89 18.33 16.23 12 9.89 5.67 8.48 7.08"></polygon></svg>
                 </button>
             </form>
-            <form action="{% url 'region_remove_admin' %}" method="post" class="">
+            <form id="Remove" class="">
                 <input type="hidden" name="pk" value="{{i.id}}" />
+                <input type="hidden" name="name" value="{{i.Name}}" />
                 {% csrf_token %}
                 <button type="submit">
                     <svg class="w-[30px]" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
@@ -75,6 +76,43 @@
                         </svg>
                 </button>
             </form>
+            <script>
+                $(document).ready(function() {
+                    $('#Remove').on('submit', function(event) {
+                        event.preventDefault();
+                        // $('#loader_login').show()
+                        // $('#Login_Form').hide()
+                    
+                        var formData = new FormData(this);  // Tạo FormData từ form hiện tại
+                        if (confirm("If you delete "+"'"+formData.get("name")+"'"+", all areas belonging to "+"'"+formData.get("name")+"'"+" will also be deleted. Are you sure you want to delete? ")) {
+                            $.ajax({
+                            url: '{% url 'region_remove_admin' %}',
+                            method: 'POST',
+                            processData: false,  // Không xử lý dữ liệu (cần thiết khi sử dụng FormData)
+                            contentType: false,  // Không đặt kiểu content (cần thiết khi sử dụng FormData)
+                            data: formData,
+                            success: function(response) {
+                                if (response.success) {
+                                    // alert(response.message);
+                                    window.location.href = response.redirect_url;
+                                } else {
+                                    // $('#loader_login').hide()
+                                    // $('#Login_Form').show()
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(response) {
+                                console.log('Registration failed', response);
+                            }
+                            });
+                        } else {
+                            // Huỷ xoá
+                            return false;
+                        }
+                    });
+                    
+                });
+            </script>
         </div>
         {% endfor %}
     </div>

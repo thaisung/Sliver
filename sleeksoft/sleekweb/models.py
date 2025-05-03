@@ -67,7 +67,7 @@ class Nation(models.Model):
         verbose_name_plural = "Khu nhỏ"
     
     Name = models.CharField('Tên quốc gia', max_length=100,blank=True, null=True)
-    Belong_Region = models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='list_nation',blank=True, null=True)
+    Belong_Region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='list_nation',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
