@@ -240,7 +240,7 @@
                         <label class="font-semibold">
                             Nation
                         </label>
-                        <select id="small-area" name="Belong_Nation" class="rounded-md w-full mt-1">
+                        <select  name="Belong_Nation" class="rounded-md w-full mt-1">
                             {% for i in list_Nation %}
                             <option value="{{i.id}}" {% if obj_Product.Belong_Nation.id == i.id %}selected{% endif %}>{{i.Name}}</option>
                             {% endfor %}

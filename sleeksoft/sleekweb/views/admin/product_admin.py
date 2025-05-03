@@ -120,6 +120,7 @@ def product_add_admin(request):
         context = {}
         context['domain'] = settings.DOMAIN
         context['list_Region'] = Region.objects.all()
+        context['list_Nation'] = Nation.objects.all()
         print('context:',context)
         if request.user.is_authenticated:
             return render(request, 'sleekweb/admin/product_add_admin.html', context, status=200)
@@ -186,7 +187,7 @@ def product_edit_admin(request,pk):
         except:
             return redirect('product_admin')
         context['list_Region'] = Region.objects.all()
-        context['list_Nation'] = Nation.objects.filter(Belong_Region=context['obj_Product'].Belong_Region)
+        context['list_Nation'] = Nation.objects.all()
         print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
