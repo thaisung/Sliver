@@ -250,7 +250,7 @@
     </header>
     <div class="flex w-full grow">
         <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
-            {% for i in list_Product|slice:":3" %}
+            {% for i in list_Product|slice:":10" %}
             <a href="{% url 'detail_client' pk=i.uuid %}" class="w-full h-auto">
                 <img alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto object-cover" >
             </a>
@@ -258,7 +258,7 @@
         </div>
         {% block content %}{% endblock %}
         <div class="hidden  lg:flex flex-col gap-[15px] w-full p-[15px]">
-            {% for i in list_Product|slice:"-3:" %}
+            {% for i in list_Product|slice:"-10:" %}
             <a href="{% url 'detail_client' pk=i.uuid %}" class="w-full h-auto">
                 <img alt="img" src="{{i.list_photo.all.first.Avatar.url|default:''}}" class="w-full h-auto object-cover" >
             </a>
