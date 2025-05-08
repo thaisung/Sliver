@@ -904,14 +904,6 @@ select {
   margin-top: 15px;
 }
 
-.mt-\[25px\] {
-  margin-top: 25px;
-}
-
-.mt-\[20px\] {
-  margin-top: 20px;
-}
-
 .block {
   display: block;
 }
@@ -952,6 +944,10 @@ select {
   height: 20px;
 }
 
+.h-\[300px\] {
+  height: 300px;
+}
+
 .h-\[30px\] {
   height: 30px;
 }
@@ -968,6 +964,14 @@ select {
   height: 40px;
 }
 
+.h-\[450px\] {
+  height: 450px;
+}
+
+.h-\[80px\] {
+  height: 80px;
+}
+
 .h-auto {
   height: auto;
 }
@@ -978,38 +982,6 @@ select {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[280px\] {
-  height: 280px;
-}
-
-.h-\[275px\] {
-  height: 275px;
-}
-
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-\[320px\] {
-  height: 320px;
-}
-
-.h-\[400px\] {
-  height: 400px;
-}
-
-.h-\[450px\] {
-  height: 450px;
-}
-
-.h-\[80px\] {
-  height: 80px;
-}
-
-.h-\[200px\] {
-  height: 200px;
 }
 
 .max-h-\[40px\] {
@@ -1030,6 +1002,10 @@ select {
 
 .w-\[100px\] {
   width: 100px;
+}
+
+.w-\[120px\] {
+  width: 120px;
 }
 
 .w-\[137px\] {
@@ -1086,14 +1062,6 @@ select {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[180px\] {
-  width: 180px;
-}
-
-.w-\[190px\] {
-  width: 190px;
 }
 
 .max-w-\[400px\] {
@@ -1299,11 +1267,6 @@ select {
   border-color: rgb(41 37 36 / var(--tw-border-opacity, 1));
 }
 
-.border-yellow-100 {
-  --tw-border-opacity: 1;
-  border-color: rgb(254 249 195 / var(--tw-border-opacity, 1));
-}
-
 .bg-\[\#0e203c\] {
   --tw-bg-opacity: 1;
   background-color: rgb(14 32 60 / var(--tw-bg-opacity, 1));
@@ -1407,16 +1370,16 @@ select {
   fill: #a8a29e;
 }
 
+.fill-stone-900 {
+  fill: #1c1917;
+}
+
 .fill-white {
   fill: #fff;
 }
 
 .fill-yellow-500 {
   fill: #eab308;
-}
-
-.fill-stone-900 {
-  fill: #1c1917;
 }
 
 .stroke-\[\#0e203c\] {
@@ -1790,12 +1753,12 @@ select {
 }
 
 @media (min-width: 768px) {
-  .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1848,6 +1811,10 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1858,10 +1825,6 @@ select {
 
   .lg\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:flex-row {

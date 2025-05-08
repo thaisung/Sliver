@@ -150,11 +150,12 @@
 
 
     <header class="bg-stone-900 flex justify-center items-center w-full">
-        <div class="w-full lg:w-[1200px] flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] items-center justify-between h-auto lg:h-[80px] py-[15px] lg:py-[0px]">
+        <div class="w-full lg:w-[1200px] flex flex-col lg:flex-row gap-[10px] lg:gap-[0px] items-center justify-between h-auto  py-[15px] lg:py-[0px]">
             <a href="/" class="neon-text relative flex flex-col whitespace-nowrap uppercase text-[25px] items-center justify-center font-extrabold h-full">
-                <span style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                <!-- <span style="font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
                     callgirl
-                </span>
+                </span> -->
+                <img alt="logo" class="w-[100px]" src="/upload/website/logo-call-girl.png" />
             </a>
             <style>
                 .neon-text span:first-child {
@@ -221,7 +222,7 @@
                     </div>
                     <div class="mt-[15px] lg:mt-[0px] w-full">
                         <select name="r" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px] w-full">
-                            <option value="" class="bg-stone-700 text-white">-- All --</option>
+                            <option value="" class="bg-stone-700 text-white">-- Region --</option>
                             {% for i in list_Region %}
                             <option value="{{i.id}}" class="bg-stone-700 text-white" {% if r == i.id %}selected{% endif %}>{{i.Name}}</option>
                             {% endfor %}
@@ -229,7 +230,7 @@
                     </div>
                     <div class="mt-[15px] lg:mt-[0px] w-full">
                         <select name="n" onchange="this.form.submit()" class="rounded-md border-[1px] border-stone-700 bg-transparent text-[14px] w-full">
-                            <option value="" class="bg-stone-700 text-white">-- All --</option>
+                            <option value="" class="bg-stone-700 text-white">-- Area --</option>
                             {% for i in list_Nation %}
                             <option value="{{i.id}}" class="bg-stone-700 text-white" {% if n == i.id %}selected{% endif %}>{{i.Name}}</option>
                             {% endfor %}
