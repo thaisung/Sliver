@@ -15,13 +15,16 @@
             <div class="flex flex-col w-full gap-[15px]">
                 <div class="flex flex-col w-full gap-[15px]">
                     <div class="flex w-full justify-center items-center">
-                        <img alt="img" class="w-full h-auto cursor-pointer" src="{{obj_Product.list_photo.all.first.Avatar.url}}" />
+                        <img alt="img" class="w-full h-auto cursor-pointer" src="{% if obj_Product.Avatar %}{{obj_Product.Avatar.url|default:''}}{% endif %}" />
                     </div>
                     <span class="font-bold">Photo :</span>
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-[15px]">
+                        <a data-fancybox="gallery-image" href="{% if obj_Product.Avatar %}{{obj_Product.Avatar.url|default:''}}{% endif %}" class="w-full h-[180px]">
+                            <img alt="img" src="{% if obj_Product.Avatar %}{{obj_Product.Avatar.url|default:''}}{% endif %}"  class="shadow-md  transition w-full h-full object-fill brightness-110" />
+                        </a>
                         {% for i in obj_Product.list_photo.all %}
-                        <a data-fancybox="gallery-image" href="{{ i.Avatar.url }}" class="w-full">
-                            <img alt="img" src="{{ i.Avatar.url }}"  class="shadow-md  transition w-full h-auto brightness-110" />
+                        <a data-fancybox="gallery-image" href="{{ i.Avatar.url }}" class="w-full h-[180px]">
+                            <img alt="img" src="{{ i.Avatar.url }}"  class="shadow-md  transition w-full h-full object-fill brightness-110" />
                         </a>
                         {% endfor %}
                     </div>

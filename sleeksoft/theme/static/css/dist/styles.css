@@ -996,6 +996,18 @@ select {
   height: 280px;
 }
 
+.h-\[250px\] {
+  height: 250px;
+}
+
+.h-\[200px\] {
+  height: 200px;
+}
+
+.h-\[180px\] {
+  height: 180px;
+}
+
 .max-h-\[40px\] {
   max-height: 40px;
 }
