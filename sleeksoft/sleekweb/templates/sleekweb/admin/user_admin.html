@@ -160,7 +160,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
                                 <a href="{% url 'user_edit_admin' pk=i.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <form id="Remove">
+                                <form id="Remove" class="Remove">
                                     {% csrf_token %}
                                     <input type="hidden" name="id" value="{{i.id}}" />
                                     <input type="hidden" name="username" value="{{i.username}}" />
@@ -185,7 +185,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('#Remove').on('submit', function(event) {
+        $('.Remove').on('submit', function(event) {
             event.preventDefault();
             // $('#loader_login').show()
             // $('#Login_Form').hide()
