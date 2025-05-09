@@ -131,7 +131,14 @@
                             </div>
                         </td> -->
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{i.username}}
+                            <div class="flex flex-col gap-1">
+                                <span>{{i.username}}</span>
+                                {% if i.is_superuser %}
+                                    <span class="text-red-500 font-bold">ADMIN</span>
+                                {% else %}
+                                    <span class="text-gray-500 ">Member</span>
+                                {% endif %}
+                            </div>
                         </th>
                         <td class="px-6 py-4">
                             {{i.Creation_time|date:'d/m/y'}}

@@ -102,12 +102,15 @@
                 <p class="font-bold text-[18px]">{{i.Name}}</p>
                 <p class="font-bold text-[18px]">{{i.Phone}}</p>
                 <p class="font-bold text-[14px] text-[#383c42]">{{i.Belong_Region.Name}} | {{i.Belong_Nation.Name}}</p>
+                {% if request.user.is_superuser %}
                 <span
                     class="font-bold text-[14px] text-red-500 underline cursor-pointer"
                     onclick="event.stopPropagation(); event.preventDefault(); window.location.href='{% url 'user_edit_admin' pk=i.Belong_User.id %}'">
                     {{i.Belong_User.username}}
                 </span>
+                {% endif %}
             </div>
+            {% if request.user.is_superuser %}
             <form method="post"  action="{% url 'product_order_admin' %}" onclick="event.stopPropagation();"  class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{i.id}}"  />
@@ -118,6 +121,7 @@
                     </button>
                 </div>
             </form>
+            {% endif %}
         </div>
         {% endfor %} 
     </div>

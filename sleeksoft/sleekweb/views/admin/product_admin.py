@@ -191,6 +191,8 @@ def product_edit_admin(request,pk):
         print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
+        elif request.user.is_authenticated and request.user.obj_user.days_left() > 0:
+            return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
         else:
             return redirect('login_admin')
     elif request.method == 'POST':
