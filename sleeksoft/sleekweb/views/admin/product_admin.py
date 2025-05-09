@@ -135,6 +135,7 @@ def product_add_admin(request):
             nation_id = request.POST.get('Belong_Nation')
 
             fields = {}
+            fields['Avatar'] = request.FILES.get('Avatar')
             fields['Name'] = request.POST.get('Name')
             fields['Phone'] = request.POST.get('Phone')
             fields['Segment'] = request.POST.get('Segment')
@@ -211,6 +212,9 @@ def product_edit_admin(request,pk):
         nation_id = request.POST.get('Belong_Nation')
 
         fields = {}
+        print('aaaaaa:',request.POST.get('Avatar'))
+        if request.FILES.get('Avatar'):
+            fields['Avatar'] = request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
         fields['Phone'] = request.POST.get('Phone')
         fields['Segment'] = request.POST.get('Segment')

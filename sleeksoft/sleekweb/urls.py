@@ -72,6 +72,7 @@ urlpatterns = [
     path('admin/product/remove', product_remove_admin,name='product_remove_admin'),
     path('admin/product/order', product_order_admin,name='product_order_admin'),
     path('admin/region', region_admin,name='region_admin'),
+    path('admin/region/edit',region_edit_admin,name='region_edit_admin'),
     path('admin/region-remove', region_remove_admin,name='region_remove_admin'),
     path('admin/nation-add', nation_add_admin,name='nation_add_admin'),
     path('admin/nation-remove', nation_remove_admin,name='nation_remove_admin'),

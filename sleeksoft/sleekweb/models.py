@@ -77,6 +77,7 @@ class XY(models.Model):
         verbose_name_plural = "Người tham gia"
     
     uuid = models.CharField('uuid', max_length=100,blank=True, null=True)
+    Avatar = models.ImageField(upload_to='AVATAR_PRODUCT',null=True,blank=True)
     Name = models.CharField('Tên NV', max_length=100,blank=True, null=True)
     Phone = models.CharField('Số đt', max_length=100,blank=True, null=True)
     Overnight = models.CharField('Qua đêm', max_length=10,blank=True, null=True,default='0')
@@ -95,57 +96,6 @@ class XY(models.Model):
     Belong_Nation = models.ForeignKey(Nation, on_delete=models.SET_NULL, related_name='list_XY_nation',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
-
-# class Price(models.Model):
-#     class Meta:
-#         ordering = ["id"]
-#         verbose_name_plural = "Giá"
-    
-#     Overnight = models.CharField('Tên NV', max_length=100,blank=True, null=True)
-
-# class XY_en(models.Model):
-#     class Meta:
-#         ordering = ["id"]
-#         verbose_name_plural = "Người tham gia"
-    
-#     uuid = models.CharField('uuid', max_length=100,blank=True, null=True)
-#     Name = models.CharField('Tên NV', max_length=100,blank=True, null=True)
-#     Phone = models.CharField('Số đt', max_length=100,blank=True, null=True)
-#     Working_time = models.CharField('Thời gian làm việc', max_length=100,blank=True, null=True)
-#     Overnight = models.CharField('Qua đêm', max_length=10,blank=True, null=True,default='0')
-#     Year_of_birth = models.CharField('Năm sinh', max_length=50,blank=True, null=True)
-#     Height = models.CharField('Chiều cao', max_length=50,blank=True, null=True)
-#     Weight = models.CharField('Cân nặng', max_length=50,blank=True, null=True)
-#     Rounds = models.CharField('Số đo 3 vòng', max_length=100,blank=True, null=True)
-#     Service = models.CharField('Dịch vụ', max_length=1000,blank=True, null=True)
-#     Segment = models.CharField('Phân khúc', max_length=50,blank=True, null=True)
-#     Content = models.TextField('Mô tả',blank=True, null=True)
-#     Belong_Region = models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='list_XY_large_en',blank=True, null=True)
-#     Belong_Nation = models.ForeignKey(Nation, on_delete=models.SET_NULL, related_name='list_XY_small_en',blank=True, null=True)
-#     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
-#     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
-
-# class XY_cn(models.Model):
-#     class Meta:
-#         ordering = ["id"]
-#         verbose_name_plural = "Người tham gia"
-    
-#     uuid = models.CharField('uuid', max_length=100,blank=True, null=True)
-#     Name = models.CharField('Tên NV', max_length=100,blank=True, null=True)
-#     Phone = models.CharField('Số đt', max_length=100,blank=True, null=True)
-#     Working_time = models.CharField('Thời gian làm việc', max_length=100,blank=True, null=True)
-#     Overnight = models.CharField('Thời gian làm việc', max_length=10,blank=True, null=True,default='0')
-#     Year_of_birth = models.CharField('Năm sinh', max_length=50,blank=True, null=True)
-#     Height = models.CharField('Chiều cao', max_length=50,blank=True, null=True)
-#     Weight = models.CharField('Cân nặng', max_length=50,blank=True, null=True)
-#     Rounds = models.CharField('Số đo 3 vòng', max_length=100,blank=True, null=True)
-#     Service = models.CharField('Dịch vụ', max_length=1000,blank=True, null=True)
-#     Segment = models.CharField('Phân khúc', max_length=50,blank=True, null=True)
-#     Content = models.TextField('Mô tả',blank=True, null=True)
-#     Belong_Region = models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='list_XY_large_cn',blank=True, null=True)
-#     Belong_Nation = models.ForeignKey(Nation, on_delete=models.SET_NULL, related_name='list_XY_small_cn',blank=True, null=True)
-#     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
-#     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
 class Photo(models.Model):
     class Meta:

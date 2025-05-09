@@ -83,6 +83,18 @@ def region_admin(request):
         obj = Region.objects.create(**fields)
         return redirect('region_admin')
     
+def region_edit_admin(request):
+    if request.method == 'POST':
+        pk = request.POST.get("pk")
+        new_name = request.POST.get("Name")
+        try:
+            obj = Region.objects.get(pk=pk)
+            obj.Name = new_name
+            obj.save()
+        except Region.DoesNotExist:
+            pass
+    return redirect("region_admin")  # hoặc HttpResponseRedirect nếu bạn muốn
+    
 def region_remove_admin(request):
     if request.method == 'POST':
         pk = request.POST.get('pk')

@@ -39,7 +39,12 @@
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5  gap-4 p-3">
         {% for i in list_Region %}
         <div class="w-full p-[20px] flex flex-col  items-center justify-between gap-[10px] border-[3px] rounded-md border-[#0e203c]">
-            <h2 class="font-bold text-[20px]">{{i.Name}}</h2>
+            <h2 class="region-name font-bold text-[20px]" data-id="{{ i.id }}">{{i.Name}}</h2>
+            <form action="{% url 'region_edit_admin' %}" method="post" class="edit-form hidden" data-id="{{ i.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{ i.id }}">
+                <input type="text" name="Name" value="{{ i.Name }}" class="edit-input border border-gray-400 px-2 rounded text-sm" />
+            </form>
             <div class="h-[1px] bg-[#0e203c] w-full"></div>
             <div class="flex flex-col items-center">
                 {% for j in i.list_nation.all %}
@@ -80,6 +85,51 @@
         {% endfor %}
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+    let clickTimeout = null;
+
+    $('.region-name').on('click touchstart', function (e) {
+        const $this = $(this);
+        const id = $this.data('id');
+
+        if ($this.data('clicked')) {
+            // Đã click 1 lần trước đó
+            clearTimeout(clickTimeout);
+            $this.data('clicked', false);
+            $this.hide();
+            $(`form.edit-form[data-id='${id}']`).removeClass('hidden').find('input.edit-input').focus();
+        } else {
+            // Click lần đầu → bắt đầu đếm thời gian
+            $this.data('clicked', true);
+            clickTimeout = setTimeout(() => {
+                $this.data('clicked', false);
+            }, 300); // 300ms là thời gian chờ click thứ 2
+        }
+    });
+
+    // Blur hoặc Enter để submit
+    $('.edit-input').on('blur', function () {
+        const value = $(this).val().trim();
+        const form = $(this).closest('form');
+        const span = $(`.nation-name[data-id='${form.data('id')}']`);
+
+        if (value !== '') {
+            form.submit();
+        } else {
+            form.addClass('hidden');
+            span.show();
+        }
+    });
+
+    $('.edit-input').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            $(this).blur();
+        }
+    });
+});
+</script>
 <script>
     $(document).ready(function() {
         $('.Remove').on('submit', function(event) {
