@@ -33,6 +33,9 @@
                         
                         <div class="swiper mySwiper-{{ forloop.counter }} w-full h-full">
                             <div class="swiper-wrapper w-full h-full">
+                                <div class="swiper-slide w-full h-full">
+                                    <img src="{% if i.Avatar %}{{i.Avatar.url|default:''}}{% endif %}" alt="img" class="w-full h-full object-cover">
+                                </div>
                                 {% for photo in i.list_photo.all %}
                                 <div class="swiper-slide w-full h-full">
                                     <img src="{{ photo.Avatar.url }}" alt="img" class="w-full h-full object-cover">
