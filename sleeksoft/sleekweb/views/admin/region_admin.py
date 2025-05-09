@@ -85,14 +85,29 @@ def region_admin(request):
     
 def region_remove_admin(request):
     if request.method == 'POST':
-        fields = {}
         pk = request.POST.get('pk')
         try:
             obj_pk = Region.objects.get(pk=pk)
             obj_pk.delete()
-        except:
-            return redirect('region_admin')
-        return redirect('region_admin')
+            return JsonResponse({
+                'success': True,
+                'redirect_url': reverse('region_admin')
+            })
+        except Region.DoesNotExist:
+            return JsonResponse({
+                'success': False,
+                'message': 'Region does not exist.'
+            })
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'message': f'Error: {str(e)}'
+            })
+
+    return JsonResponse({
+        'success': False,
+        'message': 'Invalid request method.'
+    })
     
 def nation_add_admin(request):
     if request.method == 'POST':

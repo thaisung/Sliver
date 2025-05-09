@@ -1004,10 +1004,6 @@ select {
   width: 100px;
 }
 
-.w-\[120px\] {
-  width: 120px;
-}
-
 .w-\[137px\] {
   width: 137px;
 }
@@ -1062,6 +1058,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .max-w-\[400px\] {
@@ -1783,16 +1783,16 @@ select {
     display: none;
   }
 
-  .lg\:h-\[80px\] {
-    height: 80px;
-  }
-
   .lg\:max-h-\[50px\] {
     max-height: 50px;
   }
 
   .lg\:max-h-none {
     max-height: none;
+  }
+
+  .lg\:max-h-\[60px\] {
+    max-height: 60px;
   }
 
   .lg\:w-\[1200px\] {
