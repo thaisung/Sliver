@@ -4,6 +4,8 @@ py -0p
 py -3.11
 py -V
 
+git reset **/settings.py   
+
 py -3.11 -m venv env311
 ..\env311\Scripts\activate
 

@@ -1,5 +1,5 @@
 {% extends './base.html' %}
-{% block title %}Thêm Sản phẩm{% endblock %}
+{% block title %}Product edit{% endblock %}
 {% block content %}
 <div class="w-full flex-col min-h-screen h-full">
     <div class="flex flex-col lg:flex-row items-center  lg:justify-between border-b-[1px] border-[#0e203c] lg:max-h-[50px] px-3 py-2 font-bold">
@@ -232,7 +232,7 @@
                     </label>
                     <div class="flex flex-col gap-3 items-center mt-1 w-full">
                         <div class="flex items-center gap-1 w-full">
-                            <input type="text" value="{{obj_Product.Service}}" name="Service"  class="rounded-md w-full"  />
+                            <textarea name="Service"  class="rounded-md w-full h-[150px] p-3"  >{{obj_Product.Service}}</textarea>
                         </div>
                     </div>
                 </div>

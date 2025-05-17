@@ -11,7 +11,7 @@
 {% block content %}
 <main class=" flex flex-col justify-center items-center  grow py-[15px]">
     <div class="w-full lg:w-[1200px] flex flex-col grow gap-3">
-        <div class="flex flex-col lg:flex-row gap-[15px] w-full bg-stone-900 border-[1px] border-stone-800 rounded-md p-3">
+        <div class="flex flex-col lg:flex-row gap-[15px] w-full bg-stone-900 border-[1px] border-stone-800  p-3">
             <div class="flex flex-col w-full gap-[15px]">
                 <div class="flex flex-col w-full gap-[15px]">
                     <div class="flex w-full justify-center items-center">
@@ -102,25 +102,30 @@
                 <div class="flex flex-col gap-[10px] w-full">
                     <span class="uppercase">Information :</span>
                     <div class=" font-bold text-stone-300 text-[16x] w-full  flex flex-col gap-1 ">
-                        <span class="text-yellow-500"><span class="text-white">Name/stage name: </span>	{{obj_Product.Name}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Product type (segment):</span>	{{obj_Product.Segment}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Area:</span>	{{obj_Product.Belong_Region.Name}} | {{obj_Product.Belong_Nation.Name}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Call Now:</span>
-                            <a href="https://wa.me/{{obj_Product.Phone}}" target="_blank" class="hover:underline">
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Name/stage name: </span>	{{obj_Product.Name}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Product type (segment):</span>	{{obj_Product.Segment}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Area:</span>	{{obj_Product.Belong_Region.Name}} | {{obj_Product.Belong_Nation.Name}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Call Now:</span>
+                            <a href="https://wa.me/{{obj_Product.Phone}}?text={{ message|urlencode }}" target="_blank" class="hover:underline">
                                 {{obj_Product.Phone}}
                             </a>
                         </span>
-                        <span class="text-yellow-500"><span class="text-white">Overnight:</span>	{{obj_Product.Overnight}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Year of birth:</span>	{{obj_Product.Year_of_birth}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Height (cm):</span>	{{obj_Product.Height}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Weight (kg):</span>	{{obj_Product.Weight}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Three-round measurements:</span>	{{obj_Product.Rounds}}</span>
-                        <span class="text-yellow-500"><span class="text-white">Service:</span>	{{obj_Product.Service}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Overnight:</span>	{{obj_Product.Overnight}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Year of birth:</span>	{{obj_Product.Year_of_birth}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Height (cm):</span>	{{obj_Product.Height}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Weight (kg):</span>	{{obj_Product.Weight}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Three-round measurements:</span>	{{obj_Product.Rounds}}</span>
+                        <span class="text-yellow-500 font-normal mt-[20px] flex flex-col gap-[10px]">
+                            <span class="text-white uppercase font-normal">
+                                Service:
+                            </span>
+                            <span class="whitespace-pre-line">{{obj_Product.Service|safe}}</span>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-        <a id="phone-field" href="https://wa.me/{{obj_Product.Phone}}" target="_blank" class="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-full bg-stone-50 text-stone-950 font-bold text-[20px]">
+        <a id="phone-field" href="https://wa.me/{{obj_Product.Phone}}?text={{ message|urlencode }}" target="_blank" class="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-full bg-stone-50 text-stone-950 font-bold text-[20px]">
             <svg class="w-[35px]" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                 <g>
                     <g>

@@ -85,7 +85,7 @@ class XY(models.Model):
     Height = models.CharField('Chiều cao', max_length=50,blank=True, null=True)
     Weight = models.CharField('Cân nặng', max_length=50,blank=True, null=True)
     Rounds = models.CharField('Số đo 3 vòng', max_length=100,blank=True, null=True)
-    Service = models.CharField('Dịch vụ', max_length=1000,blank=True, null=True)
+    Service = models.TextField('Dịch vụ',blank=True, null=True)
     Segment = models.CharField('Phân khúc', max_length=50,blank=True, null=True)
     Content = models.TextField('Mô tả',blank=True, null=True)
     Price_call_in = models.TextField('Giá gọi đến',blank=True, null=True)

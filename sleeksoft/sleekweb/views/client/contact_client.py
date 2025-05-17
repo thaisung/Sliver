@@ -75,6 +75,10 @@ def contact_client(request):
         context['domain'] = settings.DOMAIN
         context['list_Region'] = Region.objects.all()
         context['list_Nation'] = Nation.objects.all()
+        context['list_Product'] = XY.objects.all().order_by('Order')
+        context['list_random_products'] = random.sample(list(context['list_Product']), min(2, len(context['list_Product'])))
+        context['list_random_products1'] = random.sample(list(context['list_Product']), min(2, len(context['list_Product'])))
+
         # context['obj_Product_en'] = XY_en.objects.get(uuid=pk)
         # context['obj_Product_cn'] = XY_cn.objects.get(uuid=pk)
         # context['list_Large_area'] = Large_area.objects.all()

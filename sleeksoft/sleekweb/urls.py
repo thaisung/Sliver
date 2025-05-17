@@ -38,6 +38,7 @@ from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 
 from .views.client.login_client import *
+from .views.client.reset_password_client  import *
 from .views.client.register_client import *
 from .views.client.home_client import *
 from .views.client.detail_client import *
@@ -59,6 +60,10 @@ urlpatterns = [
     path('detail/<str:pk>/', detail_client,name='detail_client'),
     path('filter/', filter_client,name='filter_client'),
     path('account/login', login_client,name='login_client'),
+
+    path('account/reset-password', reset_password_client,name='reset_password_client'),
+    path('account/change-password-otp', change_password_check_otp_client,name='change_password_check_otp_client'),
+
     path('account/register', register_client,name='register_client'),
     path('contact', contact_client,name='contact_client'),
     

@@ -73,6 +73,10 @@ def detail_client(request,pk):
         context = {}
         lc = request.COOKIES.get('language') or 'en'
         context['domain'] = settings.DOMAIN
+        context['message'] = f"Hello, I saw profile on https://{settings.DOMAIN}"
+        context['list_Product'] = XY.objects.all().order_by('Order')
+        context['list_random_products'] = random.sample(list(context['list_Product']), min(4, len(context['list_Product'])))
+        context['list_random_products1'] = random.sample(list(context['list_Product']), min(4, len(context['list_Product'])))
         context['list_Region'] = Region.objects.all()
         context['list_Nation'] = Nation.objects.all()
         context['obj_Product'] = XY.objects.get(uuid=pk)
