@@ -103,7 +103,7 @@
                     <span class="uppercase">Information :</span>
                     <div class=" font-bold text-stone-300 text-[16x] w-full  flex flex-col gap-1 ">
                         <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Name/stage name: </span>	{{obj_Product.Name}}</span>
-                        <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Product type (segment):</span>	{{obj_Product.Segment}}</span>
+                        <span class="text-yellow-500 font-normal"><span class="text-white font bold">Product type (segment):</span>	{{obj_Product.Segment}}</span>
                         <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Area:</span>	{{obj_Product.Belong_Region.Name}} | {{obj_Product.Belong_Nation.Name}}</span>
                         <span class="text-yellow-500 font-normal"><span class="text-white font-bold">Call Now:</span>
                             <a href="https://wa.me/{{obj_Product.Phone}}?text={{ message|urlencode }}" target="_blank" class="hover:underline">
@@ -119,7 +119,14 @@
                             <span class="text-white uppercase font-normal">
                                 Service:
                             </span>
-                            <span class="whitespace-pre-line">{{obj_Product.Service|safe}}</span>
+                            {% for line in obj_Product.Service.splitlines %}
+                                <div class="flex items-center gap-2">
+                                    <svg width="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="437.3,30 202.7,339.3 64,200.7 0,264.7 213.3,478 512,94" style="fill: rgb(234, 179, 8);"></polygon>
+                                    </svg>
+                                    <span>{{ line }}</span>
+                                </div>
+                            {% endfor %}
                         </span>
                     </div>
                 </div>
