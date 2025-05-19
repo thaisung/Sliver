@@ -11,7 +11,19 @@
 {% block content %}
 <main class=" flex flex-col justify-center items-center  grow py-[15px]">
     <div class="w-full lg:w-[1200px] flex flex-col grow gap-3">
-        <div class="hidden lg:flex flex-col gap-1 ">
+        <div class="flex flex-col items-center">
+            <h1 class="text-[22px] text-yellow-500">Contact us :</h1>
+            <div class="flex flex-col lg:flex-row items-center gap-3 mt-1">
+                <a href="https://t.me/callgirlvipdubai39" target="_blank">
+                Telegram channel: <span class="text-blue-500 hover:underline" >@callgirlvipdubai39</span>
+                </a>
+                <span class="hidden lg:flex">|</span>
+                <a id="phone-field" href="https://wa.me/12567936706" target="_blank">
+                    Whatsapp: <span class="text-blue-500 hover:underline" >+12567936706</span>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="hidden lg:flex flex-col gap-1 ">
             <span class="uppercase font-bold">Thông tin tìm kiếm:</span>
             <div class="flex gap-2 text-stone-400">
                 <span>Keywords : {{s}}</span>
@@ -22,7 +34,7 @@
                 |
                 <span>Nation : {{obj_n.Name}}</span>
             </div>
-        </div>
+        </div> -->
         <div class=" w-full  flex flex-col divide-y-[1px] divide-stone-700 bg-stone-900 grow border-[1px] border-stone-800">
             <div class=" w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[15px] p-[15px] divide-y-[1px] divide-stone-700 bg-stone-900 ">
                 {% for i in list_Product %}
