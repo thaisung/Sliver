@@ -51,9 +51,18 @@ from .views.admin.region_admin import *
 from .views.admin.user_admin import *
 from .views.admin.setting_admin import *
 
+from sleekweb.sitemaps import *
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps_dict = {
+    'static': StaticViewSitemap,
+    'product': detail_product_Sitemap,
+}
+
 urlpatterns = [
     # path('account/login', login_client,name='login_client'),
     # path('admin/account/login', login_admin,name='login_admin'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='sitemap'),
 
     path('set-language/<str:lang_code>/', set_language, name='set_language'),
     path('', home_client,name='home_client'),
