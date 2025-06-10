@@ -289,6 +289,7 @@ def product_order_admin(request):
 
 def product_add_user_x_admin(request):
     if request.method == 'GET':
+        XY.objects.all().delete()
         import os
         import json
         import requests
