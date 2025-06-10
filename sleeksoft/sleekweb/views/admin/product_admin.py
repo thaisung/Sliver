@@ -299,7 +299,7 @@ def product_add_user_x_admin(request):
         from datetime import datetime
 
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        json_path = os.path.join(BASE_DIR, 'dubai_profiles_with_images_copy.json')
+        json_path = os.path.join(BASE_DIR, 'dubai_profiles_with_images.json')
         # ====== Cấu hình ======
         JSON_FILE = json_path
         SAVE_DIR = "images_user_x"
