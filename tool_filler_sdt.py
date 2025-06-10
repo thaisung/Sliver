@@ -83,69 +83,6 @@ def worker():
         # ✅ Thêm delay ngẫu nhiên giữa các lần gọi (0.5 ~ 2.0 giây)
         time.sleep(random.uniform(0.5, 2.0))
 
-# def worker():
-#     while not url_queue.empty():
-#         url = url_queue.get()
-#         page_num = get_page_number_from_url(url)
-#         try:
-#             parsed_url = urlparse(url)
-#             conn = http.client.HTTPSConnection(parsed_url.netloc)
-
-#             headers = {
-#                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0 Safari/537.36'
-#             }
-
-#             conn.request("GET", parsed_url.path, headers=headers)
-#             res = conn.getresponse()
-#             html = res.read().decode("utf-8")
-
-#             if res.status == 200:
-#                 print('text:', html[:1000])  # In ngắn gọn thôi
-#                 phones = extract_phone_numbers(html)
-#                 print('phones:', phones)
-#                 with lock:
-#                     for phone in phones:
-#                         if phone not in unique_phones:
-#                             unique_phones[phone] = page_num
-#                 print(f"[OK] Trang {page_num} - {len(phones)} số")
-#             else:
-#                 print(f"[LỖI] Trang {page_num} - Status: {res.status}")
-#         except Exception as e:
-#             print(f"[LỖI] Trang {page_num} - {e}")
-#         finally:
-#             url_queue.task_done()
-#         print(f'Xong trang : {url}')
-
-# def worker():
-#     while not url_queue.empty():
-#         url = url_queue.get()
-#         page_num = get_page_number_from_url(url)
-#         try:
-#             headers = {
-#                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0 Safari/537.36'
-#             }
-#             print('Đã call :',url)
-#             req = urllib.request.Request(url, headers=headers)
-#             with urllib.request.urlopen(req, timeout=15) as response:
-#                 html = response.read().decode("utf-8")
-#                 print('text:', html[:1000])  # chỉ in 1000 ký tự đầu để đỡ dài
-#                 phones = extract_phone_numbers(html)
-#                 print('phones:', phones)
-#                 with lock:
-#                     for phone in phones:
-#                         if phone not in unique_phones:
-#                             unique_phones[phone] = page_num
-#                 print(f"[OK] Trang {page_num} - {len(phones)} số")
-#         except HTTPError as e:
-#             print(f"[LỖI] Trang {page_num} - HTTP Error: {e.code}")
-#         except URLError as e:
-#             print(f"[LỖI] Trang {page_num} - URL Error: {e.reason}")
-#         except Exception as e:
-#             print(f"[LỖI] Trang {page_num} - {e}")
-#         finally:
-#             url_queue.task_done()
-#         print(f'Xong trang : {url}')
-
 # ========================
 for page in range(START_PAGE, END_PAGE + 1):
     url = BASE_URL.format(page)

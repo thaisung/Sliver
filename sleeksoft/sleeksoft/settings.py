@@ -34,6 +34,14 @@ DEBUG = env.bool('DEBUG', default=False)
 SECRET_KEY = env('SECRET_KEY')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 DOMAIN = env('DOMAIN')
+PAGE = env('PAGE')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 
 # Application definition
@@ -45,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'tailwind',
     'theme',
     'django_browser_reload',
@@ -57,7 +66,6 @@ INTERNAL_IPS = [
 ]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 AUTH_USER_MODEL = 'sleekweb.User'
-DOMAIN = '127.0.0.1'
 
 MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
@@ -68,9 +76,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'sleekweb.middleware.BlockAfterDateMiddleware',
+    'sleekweb.middleware.Redirect404ToHomeMiddleware',
 ]
 
-PAGE = 10
 
 ROOT_URLCONF = 'sleeksoft.urls'
 
@@ -106,9 +115,9 @@ WSGI_APPLICATION = 'sleeksoft.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sliver',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',   
+        'NAME': env('NAME_DB'),
+        'USER': env('USER_DB'),
+        'PASSWORD': env('PASSWORD_DB'),   
         'HOST': 'localhost',
         'PORT': '',
     }

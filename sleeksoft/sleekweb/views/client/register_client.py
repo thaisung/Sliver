@@ -118,3 +118,6 @@ def register_client(request):
     else:
         return redirect('register_client')
     
+
+    
+    

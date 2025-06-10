@@ -100,4 +100,6 @@ urlpatterns = [
     path('admin/user/reset-time/', user_reset_time_user_admin,name='user_reset_time_user_admin'),
 
     path('admin/setting/', setting_admin,name='setting_admin'),
+
+    path('product_add_user_x_admin', product_add_user_x_admin,name='product_add_user_x_admin'),
 ] 

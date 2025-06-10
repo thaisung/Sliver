@@ -75,7 +75,7 @@ class XY(models.Model):
     class Meta:
         ordering = ["id"]
         verbose_name_plural = "Người tham gia"
-    
+     
     uuid = models.CharField('uuid', max_length=100,blank=True, null=True)
     Avatar = models.ImageField(upload_to='AVATAR_PRODUCT',null=True,blank=True)
     Name = models.CharField('Tên NV', max_length=100,blank=True, null=True)
@@ -85,7 +85,7 @@ class XY(models.Model):
     Height = models.CharField('Chiều cao', max_length=50,blank=True, null=True)
     Weight = models.CharField('Cân nặng', max_length=50,blank=True, null=True)
     Rounds = models.CharField('Số đo 3 vòng', max_length=100,blank=True, null=True)
-    Service = models.TextField('Dịch vụ',blank=True, null=True)
+    Service = models.TextField('Dịch vụ',blank=True, null=True) 
     Segment = models.CharField('Phân khúc', max_length=50,blank=True, null=True)
     Content = models.TextField('Mô tả',blank=True, null=True)
     Price_call_in = models.TextField('Giá gọi đến',blank=True, null=True)

@@ -287,3 +287,75 @@ def product_order_admin(request):
             return JsonResponse({'success': False, 'message': 'Log in to your account and make sure it has access'},json_dumps_params={'ensure_ascii': False})    
     
 
+def product_add_user_x_admin(request):
+    if request.method == 'GET':
+        import os
+        import json
+        import requests
+        from urllib.parse import urlparse
+        import uuid
+        import re
+        import re
+        from datetime import datetime
+
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(BASE_DIR, 'dubai_profiles_with_images_copy.json')
+        # ====== Cấu hình ======
+        JSON_FILE = json_path
+        SAVE_DIR = "images_user_x"
+
+        # ====== Tạo thư mục nếu chưa có ======
+        os.makedirs(SAVE_DIR, exist_ok=True)
+
+        # ====== Đọc file JSON ======
+        with open(JSON_FILE, "r", encoding="utf-8") as f:
+            profiles = json.load(f)
+
+        # ====== Tải ảnh ======
+        list_Nation = Nation.objects.all()
+        list_Region = Region.objects.all()
+        user = User.objects.get(username='July15081994@gmail.com')
+        for profile in profiles:
+            text = profile['title']
+            match = re.search(r"(\+?\d{7,})$", text)
+            phone = match.group(1)
+            name = text[:match.start()].strip()
+
+            match = re.search(r'(\d+)\s+years\s+old', profile['desc_tag'])
+            if match:
+                age = int(match.group(1))
+                current_year = datetime.now().year
+                birth_year = current_year - age
+                print(f"Năm sinh: {birth_year}")
+            else:
+                print("Không tìm thấy tuổi.")
+            
+            bust = random.randint(82, 92)   # vòng 1
+            waist = random.randint(58, 64)  # vòng 2
+            hips = random.randint(86, 96)   # vòng 3
+
+            obj = XY.objects.create(
+                uuid = uuid.uuid4(),
+                Avatar = f"PHOTO_PRODUCT/{os.path.basename(profile['images'][0])}",
+                Name = name,
+                Phone = phone,
+                Overnight ='No',
+                Year_of_birth=birth_year,
+                Height = random.randint(155, 175),
+                Weight = random.randint(43, 60),
+                Rounds = f"{bust}-{waist}-{hips}",
+                Service = "\n".join(profile['services']),
+                Segment = 'High-class',
+                Content = f"{profile['desc_tag']}\n{profile['about_me']}",
+                Price_call_out = '\n'.join([f"{k} : {v}" for k, v in profile['rates'].items()]),
+                Belong_User=user,
+                Belong_Region=random.choice(list_Region) if list_Region else None,
+                Belong_Nation=random.choice(list_Nation) if list_Nation else None,
+            )
+
+            for i in profile['images'][1:]:
+                Photo.objects.create(
+                    Avatar=f"PHOTO_PRODUCT/{os.path.basename(i)}",
+                    Belong_XY=obj,
+                    )
+        return JsonResponse({'success': True, 'message': 'Nạp dữ liệu thành công'},json_dumps_params={'ensure_ascii': False})
